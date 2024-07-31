@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Movie Review</title>
+</head>
+<body>
+    <h2>Edit Review</h2>
+    <form method="post" th:action="@{/updateReview}" th:object="${editReview}">
+        <input type="hidden" th:field="*{id}" />
+        <input type="text" th:field="*{movieName}" placeholder="Movie Name" required><br>
+        <textarea th:field="*{review}" placeholder="Your Review" required></textarea><br><hr>
+        <button type="submit">Update Review</button>
+    </form>
+</body>
+</html>

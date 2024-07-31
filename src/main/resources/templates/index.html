@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Movie Reviews</title>
+
+</head>
+<body>
+    <h1>Movie Reviews</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Movie Name</th>
+                <th>Review</th>
+                <th>Date and Time</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="review : ${reviews}">
+                <td th:text="${review.movieName}"></td>
+                <td th:text="${review.review}"></td>
+                <td th:text="${review.currentDateTime}"></td>
+                <td>
+                    <a th:href="@{'/editReview/' + ${review.id}}">Edit</a>
+                    <a th:href="@{'/deleteReview/' + ${review.id}}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Add a Review</h2>
+    <form method="post" th:action="@{/addReview}" th:object="${newReview}" >
+        <input type="text" th:field="*{movieName}" placeholder="Movie Name" required><br>
+        <textarea th:field="*{review}" placeholder="Your Review" required></textarea><br><hr>
+        <button type="submit">Submit Review</button>
+    </form>
+</body>
+</html>
